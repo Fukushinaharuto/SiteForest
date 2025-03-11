@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent-color: #2196F3;
+  --base-color:#F5F5F5;
+  --text-color: #333333;
+  --sub-color: #FF5722;
+  --text-light-color: #808080;
+  --error-color:#D80606;
+}
+
+
+.circle-packman-1 {
+  --size: 50px;
+  --stroke-width: calc(var(--size) / 2);
+  --color: currentColor;
+  --animation-timing-function: linear;
+  --animation-duration: 1s;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+}
+
+.circle-packman-1::before,
+.circle-packman-1::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-width: var(--stroke-width);
+  border-style: solid;
+  border-radius: 50%;
+}
+
+.circle-packman-1::before {
+  border-color: var(--color) transparent transparent var(--color);
+  animation: var(--animation-timing-function) var(--animation-duration) infinite circle-packman-1-animation-before;
+}
+
+.circle-packman-1::after {
+  border-color: transparent transparent var(--color) var(--color);
+  animation: var(--animation-timing-function) var(--animation-duration) infinite circle-packman-1-animation-after;
+}
+
+@keyframes circle-packman-1-animation-before {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes circle-packman-1-animation-after {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-45deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
