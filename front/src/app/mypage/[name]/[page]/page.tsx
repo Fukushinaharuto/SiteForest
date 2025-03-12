@@ -49,7 +49,7 @@ export default function Page() {
         Verify()
         
 
-    }, [VerifyToken, Token, router]);
+    }, [Token, router]);
     const LOCAL_STORAGE_KEY = `${name}_${page}_droppedItems`;
     useEffect(() => {
         const savedItems = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -96,7 +96,7 @@ export default function Page() {
             }
         }    
         checkName();
-    }, [Token, name, checkProject, page]);
+    }, [Token, name, checkProject, page, router]);
 
     useEffect(() => {
         const zIndexes = droppedItems.map(item => item.zIndex ?? 0);
@@ -177,8 +177,6 @@ export default function Page() {
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedItems)); 
             return updatedItems;
         });
-        const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || "[]");
-        const itemExistsInLocalStorage = storedItems.some((item: { id: number }) => item.id === id);
         await PageComponentDestroy({ id });
         
     };

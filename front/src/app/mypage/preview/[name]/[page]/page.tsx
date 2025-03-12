@@ -72,7 +72,7 @@ export default function Page() {
         Verify()
         
 
-    }, [VerifyToken, Token, router]);
+    }, [Token, router]);
 
     const checkProject = ProjectName({ name });
     useEffect(() => {
@@ -95,7 +95,7 @@ export default function Page() {
             }
         }    
         checkName();
-    }, [Token, name, checkProject, page]);
+    }, [Token, name, checkProject, page, router]);
 
     useEffect(() => {
         const PageList = async() => {
@@ -180,6 +180,7 @@ export default function Page() {
                 }
                 {items.map((item) => (
                     <div
+                        key={item.id}
                         style={{
                             position: "absolute",
                             left: `${item.x}px`,

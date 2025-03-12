@@ -32,7 +32,7 @@ export default function Page() {
         }
         Index()
         
-    }, []);
+    }, [name, page]);
 
     useEffect(() => {
         if (!Token) {
@@ -51,7 +51,7 @@ export default function Page() {
         Verify()
         
 
-    }, [VerifyToken, Token, router]);
+    }, [Token, router]);
 
     const checkProject = ProjectName({ name });
     useEffect(() => {
@@ -74,7 +74,7 @@ export default function Page() {
             }
         }    
         checkName();
-    }, [Token, name, checkProject, page]);
+    }, [Token, name, checkProject, page, router]);
 
 
     if (!(checkToken && checkUrl)) {
@@ -90,6 +90,7 @@ export default function Page() {
             <div className="relative w-screen h-screen overflow-hidden">
                 {items.map((item) => (
                     <div
+                        key={item.id}
                         style={{
                             position: "absolute",
                             left: `${item.x}px`,

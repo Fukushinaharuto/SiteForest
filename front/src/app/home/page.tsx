@@ -25,7 +25,7 @@ export default function Page() {
             }
         }
         Verify()
-    }, [VerifyToken, Token, router]);
+    }, [Token, router]);
 
     useEffect(() => { 
         const List = async() => {
@@ -37,7 +37,7 @@ export default function Page() {
             }
         }
         List();
-    }, [{projectList}])
+    }, [])
 
     
 
@@ -55,7 +55,7 @@ export default function Page() {
             <div className="grid lg:grid-cols-3 grid-cols-2 gap-4">
                 {projectList.length > 0 && (
                     projectList.map((project, index) => (
-                        <Link href={`/home/${project.name}/home`} prefetch>
+                        <Link href={`/home/${project.name}/home`} prefetch key={index}>
                             <div
                                 className="p-4 rounded-lg shadow-form sm:h-96 h-52 cursor-pointer"
                             >

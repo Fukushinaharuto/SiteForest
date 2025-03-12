@@ -27,7 +27,7 @@ export default function Page() {
             }
         }
         Verify()
-    }, [VerifyToken, Token, router]);
+    }, [Token, router]);
     
     
 

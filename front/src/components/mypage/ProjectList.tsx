@@ -28,7 +28,7 @@ export function ProjectList({ isEditOpen, isDeleteOpen, setIds,  setSelectedProj
             }
         }
         List();
-    }, [{projectList}])
+    }, [setCheckToken])
     
     const handleProjectClick = (project: ProjectShowResponse) => {
         if (isEditOpen) {

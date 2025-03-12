@@ -313,7 +313,7 @@ export function RightSide({ selectedItem, onPropertyChange, setIsRightSideOpen, 
                                 />
                                 <button
                                     className="text-text bg-white w-[40%] rounded-md ml-5 mt-4"
-                                    onClick={(e) => onPropertyChange("color", "")}
+                                    onClick={() => onPropertyChange("color", "")}
                                 >
                                     カラーなし
                                 </button>

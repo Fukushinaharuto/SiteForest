@@ -2,9 +2,13 @@ FROM node:22.5-slim
 
 WORKDIR /front
 
-COPY . .
+# パッケージのインストールを先に行う
+COPY package*.json ./
+RUN npm install
 
-RUN npm install && npm run build
+# その後、ソースコードをコピーしてビルド
+COPY . .
+RUN npm run build
 
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+CMD ["npm","run","dev"]
