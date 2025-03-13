@@ -20,6 +20,7 @@ export const LoginApi = async ({
             email: email,
             password: password,
         });
+        console.log(response.data.token)
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {

@@ -36,6 +36,7 @@ export default function Page() {
 
     useEffect(() => {
         if (!Token) {
+            console.log("error")
             router.push("/login");
             return;
         }

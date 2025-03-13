@@ -24,7 +24,7 @@ export function LoginForm() {
             const response = await LoginApi(loginData);
             if (response.token) {
                 Cookies.set('AuthToken', response.token, {
-                    secure: true,
+                    secure: false,
                     sameSite: 'Lax',
                     expires: 10,
                     path: '/'

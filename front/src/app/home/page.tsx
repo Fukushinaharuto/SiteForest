@@ -1,35 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ProjectShowResponse, ProjectIndex } from "@/api/Project";
-import { VerifyToken } from "@/api/VerifyToken";
 import { CharacterLimit } from "@/components/mypage/CharacterLimit";
 
 export default function Page() {
-    const Token = Cookies.get("AuthToken");
-    const router = useRouter();
-    const [checkToken, setCheckToken] = useState(false);
     const [projectList, setProjectList] = useState<ProjectShowResponse[]>([]);
-
-    useEffect(() => {
-        const Verify = async() => {
-            const response = await VerifyToken();
-            if (response) {
-                setCheckToken(true)
-            } else {
-                Cookies.remove('AuthToken', { path: '/' });
-                router.push("/login");
-            }
-        }
-        Verify()
-    }, [Token, router]);
+    const [show, setShow] = useState(false);
 
     useEffect(() => { 
         const List = async() => {
             const response = await ProjectIndex();
+            setShow(true);
             if (response) {
                 setProjectList(response.reverse());
             } else {
@@ -41,7 +24,7 @@ export default function Page() {
 
     
 
-    if (!checkToken) {
+    if (!show) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <div className="circle-packman-1"></div>

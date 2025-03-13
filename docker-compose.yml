@@ -41,8 +41,15 @@ services:
       context: ./front
       dockerfile: Dockerfile
     container_name: siteforest_front
+    volumes:
+      - ./front:/front  # ソースコードを同期
+      - /front/node_modules  # node_modules をホストと分離
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "3000:3000"
+    command: npm run dev
     depends_on:
       - back
     restart: always
