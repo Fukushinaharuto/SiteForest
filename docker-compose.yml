@@ -1,18 +1,11 @@
 services:
   # Nginxリバースプロキシ
-  nginx:
-    image: nginx:latest
-    container_name: siteforest_nginx
+  web:
+    image: nginx
     ports:
       - "80:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/front.conf:/etc/nginx/conf.d/front.conf:ro
-      - ./nginx/back.conf:/etc/nginx/conf.d/back.conf:ro
-      - ./back/public:/var/www/html/public
-    depends_on:
-      - back
-      - front
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     restart: always
 
   # Laravel（PHP-FPM）
@@ -31,9 +24,12 @@ services:
       - DB_DATABASE=SiteForest
       - DB_USERNAME=root
       - DB_PASSWORD=password
+    ports:
+      - "8000:8000"
     depends_on:
       - db
     restart: always
+    command: php artisan serve --host 0.0.0.0
 
   # Next.js（フロントエンド）
   front:

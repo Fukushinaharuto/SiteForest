@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-WORKDIR /var/www/html
+WORKDIR /back
 
 COPY . .
 
@@ -13,5 +13,4 @@ COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 9000
-CMD ["php-fpm"]
+EXPOSE 8000
