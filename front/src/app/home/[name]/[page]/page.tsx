@@ -9,7 +9,6 @@ import { Text } from "@/components/parts/Text";
 import { HyperLink } from "@/components/parts/HyperLink";
 import { useParams, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { ProjectName } from "@/api/ProjectName";
 import { VerifyToken } from "@/api/VerifyToken";
 import { PageComponentIndex } from "@/api/PageComponent";
 
@@ -21,7 +20,6 @@ export default function Page() {
     const { name: encodedName, page: encodedPage } = useParams();
     const name = decodeURIComponent(encodedName as string);
     const page = decodeURIComponent(encodedPage as string);
-    const [checkUrl, setCheckUrl] = useState(false);
 
     useEffect(() => {
         const Index = async() => {
@@ -54,31 +52,8 @@ export default function Page() {
 
     }, [Token, router]);
 
-    const checkProject = ProjectName({ name });
-    useEffect(() => {
-        const checkName = async() => {
-            const response = await checkProject();
-            
-            if (response && response.name) {
-                if (response.name.some(projectName => projectName === name)) {
-                    if (response.page.some(projectPage => projectPage === page)) {
-                        setCheckUrl(true)
-                        return;
-                    } else {
-                        router.push(`/home/${name}/home`)
-                    }
-                } else {
-                    router.push("/home");
-                }
-            } else {
-                router.push('/home')
-            }
-        }    
-        checkName();
-    }, [Token, name, checkProject, page, router]);
 
-
-    if (!(checkToken && checkUrl)) {
+    if (!(checkToken)) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <div className="circle-packman-1"></div>
